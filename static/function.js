@@ -39,7 +39,7 @@ document.getElementById("filepicker").addEventListener("change", function(event)
   // Dynamic create the image list of files
   for (link of links) {
     document.getElementById('list').innerHTML += `
-    <img src=${link} id=${link} title=${link} style="width:100px; height: 100px" onclick=Enlarge(this); />
+    <img src="${link}" id="${link}" title="${link}" style="width:100px; height: 100px" onclick=Enlarge(this); />
     `;
   }
 

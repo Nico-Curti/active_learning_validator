@@ -210,11 +210,13 @@ function Enlarge(imgs) {
 // Next/previous controls
 function plusSlides(n) {
   showSlides(slideIndex += n);
+  document.getElementById("counter").innerHTML = "Image: " + slideIndex + "/" + links.length;
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
   showSlides(slideIndex = n);
+  document.getElementById("counter").innerHTML = "Image: " + slideIndex + "/" + links.length;
 }
 
 

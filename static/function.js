@@ -10,6 +10,10 @@ let slideIndex = 0;
 
 var responses = {};
 
+let directory = "";
+let start = 0;
+let stop = Math.floor((0.9 * window.screen.availWidth) * window.devicePixelRatio * .01);
+let N = stop; // initial value as fixed
 
 /********* Set text Button ******************/
 
@@ -25,29 +29,24 @@ document.getElementById('tooltip_text').innerHTML = translations[LANGUAGE]["help
 // Upload directory button
 document.getElementById("filepicker").addEventListener("change", function(event) {
 
+  if (directory == "") {
+    directory = event.target;
+  }
+
+  // hide the uploader button
+  document.getElementById("initial").style.display = "none";
+
   // get the list of files
-  let files = event.target.files;
+  let files = directory.files;
 
   // append it to the global LINKS array
   for (let i=0; i<files.length; i++) {
     links.push(files[i].webkitRelativePath);
   };
 
-  // hide the uploader button
-  document.getElementById("initial").style.display = "none";
-
-  // Dynamic create the image list of files
-  for (link of links) {
-    document.getElementById('list').innerHTML += `
-    <img src="${link}" id="${link}" title="${link}" style="width:100px; height: 100px" onclick=Enlarge(this); />
-    `;
-  }
-
-  // show the first slide
-  showSlides(slideIndex);
+  LoadFiles(directory)
 
 }, false);
-
 
 // KeyBoard shortcuts
 document.addEventListener('keydown', (event) => {
@@ -161,6 +160,53 @@ document.getElementById('button_upload').addEventListener('click', (event) => {
 
 /********* Functions ***************/
 
+// Slider for list of files <-
+function MoveLeft () {
+  start -= 1;
+  stop  -= 1;
+
+  if (start < 0) {
+    start = links.length - N - 1;
+    stop = links.length - 1;
+    slideIndex = stop;
+  }
+
+  LoadFiles(directory);
+};
+
+
+// Slider for list of files ->
+function MoveRight () {
+  start += 1;
+  stop  += 1;
+
+  if (stop > links.length - 1) {
+    start = 0;
+    stop = N;
+    slideIndex = start;
+  }
+
+  LoadFiles(directory);
+};
+
+
+// Update the list gallery of images
+function LoadFiles (directory) {
+
+  document.getElementById('list').innerHTML = "";
+
+  // Dynamic create the image list of files
+  for (let i=start; i < stop; ++i) {
+    link = links[i];
+    document.getElementById('list').innerHTML += `
+    <img src="${link}" id="${link}" title="${link}" style="width:100px; height:100px" onclick=Enlarge(this); />
+    `;
+  }
+
+  // show the first slide
+  showSlides(slideIndex);
+}
+
 
 // Trigger the loader event
 function FileLoader() {
@@ -168,15 +214,30 @@ function FileLoader() {
 }
 
 
+// Highlight the selected image
+function HighlightSel (n) {
+
+  for (let i=start; i < stop; ++i) {
+    let id = document.getElementById(links[i]);
+    if (id == n) {
+      document.getElementById(links[i]).style.border = "3px solid gold";
+    } else {
+      document.getElementById(links[i]).style.border = "1px solid #000";
+    }
+  }
+}
+
+
 // Show the slide according to list index
 function showSlides(n) {
 
   // Force the wrap around
-  if (n > links.length - 1) {slideIndex = 0}
-  if (n < 0) {slideIndex = links.length - 1}
+  if (n > stop - 1) {slideIndex = stop - 1;}
+  if (n < start) {slideIndex = start;}
 
   // Get the element
   let slides = document.getElementById(links[slideIndex]);
+
   // Pass to the enlarge viewer
   Enlarge(slides);
 }
@@ -184,6 +245,18 @@ function showSlides(n) {
 
 // Expand the given image in the viewer box
 function Enlarge(imgs) {
+
+  for (let i=start; i < stop; ++i) {
+    let id = document.getElementById(links[i]);
+    if (id == imgs) {
+      slideIndex = i;
+      break;
+    }
+  }
+
+  // Highlight the selected item
+  HighlightSel(imgs);
+
   // Get the expanded image
   var expandImg = document.getElementById("expandedImg");
   // Use the same src in the expanded image as the image being clicked on from the grid

@@ -48,7 +48,15 @@
 
 
     <!-- Upper bar with horizontal scroll for image thumbnails -->
-    <div class="scrollmenu" id='list'></div>
+    <div class="header">
+      <div class="arrow" id="left-arrow" onclick="MoveLeft()">
+        <span>&#8249;</span>
+      </div>
+      <div class="scrollmenu" id='list'></div>
+      <div class="arrow" id="right-arrow" onclick="MoveRight()">
+        <span>&#8250;</span>
+      </div>
+    </div>
 
     <!-- Main div in which display button and images -->
     <div class="container">

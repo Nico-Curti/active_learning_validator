@@ -10,16 +10,63 @@ html {
 body{
   margin: 5px;
   transition: baground-color 0.5s;
+  min-width: 800px;
 }
 
 .notice {
   font-style: italic;
 }
 
+div.header {
+  background-color: #333;
+}
+
+div#left-arrow {
+  float: left;
+  padding: 2px;
+  width: 2%;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+}
+
+div#left-arrow:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+div#left-arrow span {
+  font-size: 70px;
+  color: white;
+  font-family: bold;
+}
+
+div#right-arrow {
+  padding: 2px;
+  float: right;
+  width: 2%;
+  display: inline-block;
+  text-align: center;
+  height: 100px;
+}
+
+div#right-arrow:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+div#right-arrow span {
+  font-size: 70px;
+  color: white;
+  font-family: bold;
+}
+
 /* Upper grid of images */
 div.scrollmenu {
-  background-color: #333;
-  overflow: auto;
+  width: 95%;
+  padding: 2px;
+  height: 90px;
+  display: inline-block;
   white-space: nowrap;
 }
 
@@ -64,7 +111,6 @@ div.scrollmenu img:hover {
   margin-right: auto;
   height: 80%;
   background-color: black;
-  border: 1px solid #000;
   color: white;
   transition: 0.5s;
 }

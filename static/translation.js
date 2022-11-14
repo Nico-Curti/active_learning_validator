@@ -30,7 +30,8 @@ var translations = {
     <b>Shortcuts:</b><br>
     * S: <span style="color: lime">Valid image</span><br>
     * N: <span style="color: red">Invalid image</span><br>
-    * Enter: <span style="color: cyan">Download</span><br>
+    * Enter: <span style="color: lime">Upload Directory</span><br>
+    * Esc: <span style="color: cyan">Download and close</span><br>
     * &#10094/&#10095: Prev/Next image<br>
     `,
 
@@ -68,7 +69,8 @@ var translations = {
     <b>Shortcuts:</b><br>
     * S: <span style="color: lime">Valida immagine</span><br>
     * N: <span style="color: red">Invalida immagine</span><br>
-    * Invio: <span style="color: cyan">Download</span><br>
+    * Invio: <span style="color: lime">Carica una Cartella</span><br>
+    * Esc: <span style="color: cyan">Download e termina</span><br>
     * &#10094/&#10095: Immagine precedente/successiva<br>
     `,
 

@@ -11,6 +11,9 @@ body{
   margin: 5px;
   transition: baground-color 0.5s;
   min-width: 800px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
 }
 
 .notice {
@@ -18,7 +21,9 @@ body{
 }
 
 div.header {
+  margin-right: 10px;
   background-color: #333;
+  height: 110px;
 }
 
 div#left-arrow {
@@ -99,6 +104,7 @@ div.scrollmenu img:hover {
 .container {
   position: relative;
   display: none;
+  height: calc(100% - 110px);
   background-color: #111; /* Black*/
 }
 
@@ -109,12 +115,11 @@ div.scrollmenu img:hover {
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  height: 80%;
+  height: 90%;
   background-color: black;
   color: white;
   transition: 0.5s;
 }
-
 
 /* Next & previous buttons */
 .prev,
@@ -173,6 +178,7 @@ div.scrollmenu img:hover {
 
 /* Color style for alert button */
 .alert {
+  margin-left: 10px;
   background-color: rgba(220, 0, 0, 1);
 }
 

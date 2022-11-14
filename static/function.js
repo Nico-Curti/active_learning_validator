@@ -12,7 +12,7 @@ var responses = {};
 
 let directory = "";
 let start = 0;
-let stop = Math.floor((0.9 * window.screen.availWidth) * window.devicePixelRatio * .01);
+let stop = Math.floor((0.875 * window.screen.availWidth) * window.devicePixelRatio * .01);
 let N = stop; // initial value as fixed
 
 /********* Set text Button ******************/
@@ -44,7 +44,7 @@ document.getElementById("filepicker").addEventListener("change", function(event)
     links.push(files[i].webkitRelativePath);
   };
 
-  LoadFiles(directory)
+  LoadFiles(directory);
 
 }, false);
 
@@ -72,8 +72,13 @@ document.addEventListener('keydown', (event) => {
       break;
 
     case "Enter":
-      document.getElementById('button_upload').click();
-      break
+      document.getElementById('loader').click();
+      break;
+
+    case "Escape": {
+        document.getElementById('button_upload').click();
+        close();
+      } break;
   }
 
 }, false);
@@ -166,8 +171,8 @@ function MoveLeft () {
   stop  -= 1;
 
   if (start < 0) {
-    start = links.length - N - 1;
-    stop = links.length - 1;
+    start = links.length - N;
+    stop = links.length;
     slideIndex = stop;
   }
 
@@ -220,9 +225,9 @@ function HighlightSel (n) {
   for (let i=start; i < stop; ++i) {
     let id = document.getElementById(links[i]);
     if (id == n) {
-      document.getElementById(links[i]).style.border = "3px solid gold";
+      document.getElementById(links[i]).style.border = "3px solid yellow";
     } else {
-      document.getElementById(links[i]).style.border = "1px solid #000";
+      document.getElementById(links[i]).style.border = "3px solid #333";
     }
   }
 }
@@ -240,6 +245,7 @@ function showSlides(n) {
 
   // Pass to the enlarge viewer
   Enlarge(slides);
+  document.getElementById("counter").innerHTML = "Image: " + (slideIndex + 1) + "/" + links.length;
 }
 
 
@@ -282,14 +288,15 @@ function Enlarge(imgs) {
 
 // Next/previous controls
 function plusSlides(n) {
-  showSlides(slideIndex += n);
-  document.getElementById("counter").innerHTML = "Image: " + slideIndex + "/" + links.length;
-}
+  slideIndex += n;
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-  document.getElementById("counter").innerHTML = "Image: " + slideIndex + "/" + links.length;
+  if (slideIndex >= stop) {
+    MoveRight();
+  } else if (slideIndex < start) {
+    MoveLeft();
+  } else {
+    showSlides(slideIndex);
+  }
 }
 
 

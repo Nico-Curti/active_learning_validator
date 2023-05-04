@@ -1,6 +1,6 @@
 
-var translations = {
-	'eng': {
+const translations = {
+	'en-US': {
 		'title': 'Semi-Supervised Active Learning Validator',
 
 		'loader_btn': 'Upload Directory',
@@ -38,8 +38,14 @@ var translations = {
     'snack_yes': 'set as VALID image',
     'snack_no': 'set as INVALID image',
     'snack_download': 'File saved',
+
+    'speech_valid': 'valid',
+    'speech_invalid': 'invalid',
+    'speech_forward': 'go on',
+    'speech_backward': 'go back',
+    'speech_download': 'download',
 	},
-	'ita': {
+	'it-IT': {
 		'title': 'Validatore di Immagini per Apprendimento Attivo Semi-Supervisionato',
 
 		'loader_btn': 'Carica una Cartella',
@@ -77,5 +83,11 @@ var translations = {
     'snack_yes': 'salvata come immagine VALIDA',
     'snack_no': 'salvata come immagine INVALIDA',
     'snack_download': 'Salvataggio del file',
+
+    'speech_valid': 'valida',
+    'speech_invalid': 'invalida',
+    'speech_forward': 'avanti',
+    'speech_backward': 'indietro',
+    'speech_download': 'scarica',
 	}
 }

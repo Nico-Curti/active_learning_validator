@@ -3,7 +3,7 @@ const MISSING_VALUE = "NaN"
 const VALID_ID = "yes"
 const INVALID_ID = "no"
 const OUTNAME = "responses_" + now.toLocaleDateString() + ".csv"
-const LANGUAGE = "eng"
+const LANGUAGE = "it-IT"
 
 const links = []
 let slideIndex = 0;

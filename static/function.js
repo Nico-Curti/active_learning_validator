@@ -15,6 +15,10 @@ let start = 0;
 let stop = Math.floor((0.875 * window.screen.availWidth) * window.devicePixelRatio * .01);
 let N = stop; // initial value as fixed
 
+let invalid_cnt = 0;
+let valid_cnt = 0;
+let none_cnt = 0;
+
 /********* Set text Button ******************/
 
 document.getElementById('title').innerHTML = translations[LANGUAGE]["title"];
@@ -93,6 +97,25 @@ document.getElementById('button_no').addEventListener('click', (event) => {
   // highlight border
   current.style.borderColor = "red";
 
+  // switch case for the update of the counters
+  if (responses[filename] == VALID_ID) {
+    valid_cnt -= 1;
+    invalid_cnt += 1;
+    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
+  } else if (responses[filename] == INVALID_ID) { // it is already an invalid image
+
+  } else { // it is an unknown image
+    none_cnt -= 1;
+    invalid_cnt += 1;
+    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
+  }
+
   // Update the global dictionary
   responses[filename] = INVALID_ID;
 
@@ -110,6 +133,25 @@ document.getElementById('button_yes').addEventListener('click', (event) => {
 
   // highlight border
   current.style.borderColor = "lime";
+
+  // switch case for the update of the counters
+  if (responses[filename] == INVALID_ID) {
+    invalid_cnt -= 1;
+    valid_cnt += 1;
+    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
+  } else if (responses[filename] == VALID_ID) { // it is already an valid image
+
+  } else { // it is an unknown image
+    none_cnt -= 1;
+    valid_cnt += 1;
+    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
+  }
 
   // Update the global dictionary
   responses[filename] = VALID_ID;
@@ -210,6 +252,12 @@ function LoadFiles (directory) {
 
   // show the first slide
   showSlides(slideIndex);
+
+  // update the counters
+  none_cnt = links.length
+  document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+  document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+  document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
 }
 
 

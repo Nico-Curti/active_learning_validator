@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <!-- Skip the speech recognition task since it doesn't work properly yet, but it slows down the interface -->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>-->
 
     <script type="text/javascript" defer src="static/translation.js"></script>
     <script type="text/javascript" defer src="static/function.js"></script>
     <script type="text/javascript" defer src="static/jquery.js"></script>
-    <script type="text/javascript" defer src="static/speech.js"></script>
+    <!-- <script type="text/javascript" defer src="static/speech.js"></script> -->
 
     <link rel="stylesheet" href="static/index.css">
 
@@ -120,6 +121,21 @@
       <span style="color: yellow; position: absolute; left: 5; bottom: 20; font-size: 32"
             id="counter">
         Image Counter
+      </span>
+
+      <span style="color: rgba(0, 250, 0, 1); position: absolute; right: 100; bottom: 20; font-size: 32"
+            id="valid_counter">
+        Valid Counter
+      </span>
+
+      <span style="color: rgba(250, 0, 0, 1); position: absolute; right: 300; bottom: 20; font-size: 32"
+            id="invalid_counter">
+        Invalid Counter
+      </span>
+
+      <span style="color: white; position: absolute; right: 520; bottom: 20; font-size: 32"
+            id="none_counter">
+        Blanck Counter
       </span>
 
     </div> <!-- end container div -->

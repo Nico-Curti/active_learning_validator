@@ -36,3 +36,12 @@ You can easily manage the language of buttons and texts setting the `LANGUAGE` v
   </p>
 </details>
 
+
+<details><summary><b>Reset current image vote</b></summary>
+  <p>
+
+  **13/07/2023**: adding the reset of the vote for the current image to keep the possibility to express a 3-class validation as valid-invalid-none.
+  This update could be useful to enlarge the possible votes given by the validator (3 is better than 2 😉).
+
+  </p>
+</details>

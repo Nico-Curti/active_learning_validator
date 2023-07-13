@@ -75,6 +75,28 @@ document.addEventListener('keydown', (event) => {
       document.getElementById('button_no').click();
       break;
 
+    case "Space": {
+      var current = document.getElementById('expandedImg');
+      var filename = current.name;
+
+      // turn-off border
+      current.style.borderColor = "#333";
+      if (responses[filename] == VALID_ID) {
+        valid_cnt -= 1;
+        none_cnt += 1;
+      } else if (responses[filename] == INVALID_ID) {
+        invalid_cnt -= 1;
+        none_cnt += 1;
+      }
+
+    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
+
+      responses[filename] = MISSING_VALUE;
+    } break;
+
     case "Enter":
       document.getElementById('loader').click();
       break;
@@ -101,20 +123,17 @@ document.getElementById('button_no').addEventListener('click', (event) => {
   if (responses[filename] == VALID_ID) {
     valid_cnt -= 1;
     invalid_cnt += 1;
-    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
-    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
-    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
-
   } else if (responses[filename] == INVALID_ID) { // it is already an invalid image
 
   } else { // it is an unknown image
     none_cnt -= 1;
     invalid_cnt += 1;
-    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
-    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
-    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
-
   }
+
+  document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+  document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+  document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
+
 
   // Update the global dictionary
   responses[filename] = INVALID_ID;
@@ -138,20 +157,17 @@ document.getElementById('button_yes').addEventListener('click', (event) => {
   if (responses[filename] == INVALID_ID) {
     invalid_cnt -= 1;
     valid_cnt += 1;
-    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
-    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
-    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
 
   } else if (responses[filename] == VALID_ID) { // it is already an valid image
 
   } else { // it is an unknown image
     none_cnt -= 1;
     valid_cnt += 1;
-    document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
-    document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
-    document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
-
   }
+
+  document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
+  document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
+  document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;
 
   // Update the global dictionary
   responses[filename] = VALID_ID;

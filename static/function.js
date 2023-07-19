@@ -17,7 +17,7 @@ let N = stop; // initial value as fixed
 
 let invalid_cnt = 0;
 let valid_cnt = 0;
-let none_cnt = 0;
+let none_cnt = -1;
 
 /********* Set text Button ******************/
 
@@ -270,7 +270,8 @@ function LoadFiles (directory) {
   showSlides(slideIndex);
 
   // update the counters
-  none_cnt = links.length
+  if (none_cnt == -1)
+    none_cnt = links.length
   document.getElementById("none_counter").innerHTML = "Blanck: " + none_cnt;
   document.getElementById("invalid_counter").innerHTML = "Invalid: " + invalid_cnt;
   document.getElementById("valid_counter").innerHTML = "Valid: " + valid_cnt;

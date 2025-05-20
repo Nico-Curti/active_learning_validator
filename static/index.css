@@ -77,6 +77,11 @@ div.scrollmenu {
 
 /* Style the images inside the grid */
 div.scrollmenu img {
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+  object-fit: contain;
+  display: inline-block;
   opacity: 0.8;
   cursor: pointer;
 }
@@ -119,6 +124,9 @@ div.scrollmenu img:hover {
   background-color: black;
   color: white;
   transition: 0.5s;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 }
 
 /* Next & previous buttons */
@@ -266,7 +274,7 @@ div.scrollmenu img:hover {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 250px;
-  background-color: #333;;
+  background-color: #333;
   color: #fff;
   text-align: left;
   border-radius: 6px;
